@@ -1,0 +1,254 @@
+@import 'sidebar.scss';
+@import 'top-header.scss';
+
+.dashboard-main {
+  display: flex;
+  flex-direction: column;
+  float: left;
+  width: calc(100% - 270px);
+  height: 100vh;
+  border-radius: 16px 0px 0px 16px;
+  padding: 0;
+  background-color: $gray-color;
+
+
+/* ---index css-- */
+.btn.kyc-btn {
+  box-shadow: 0px 10px 30px #1D1D1D4D;
+  border-radius: 27px;
+  color: $black;
+  font-size: 18px;
+  background:$white;
+  font-weight:600;
+}
+
+.dropdown.custom-drop {
+  border: 1px solid $secondary-color2;
+  border-radius: 5px;
+}
+
+.filter-main {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
+
+.filter-main .icons {
+  box-shadow: 0px 0px 15px $black;
+  border: 1px solid #70707026;
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  color: $secondary-color2;
+  background:$white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 21px;
+}
+
+.filter-main select {
+  width: 165px;
+  border: 1px solid $secondary-color2;
+  border-radius: 5px;
+  color: $secondary-color2;
+  font-weight: 500;
+}
+
+.date-cal {
+  border: 1px solid $secondary-color2;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  min-width: 258px;
+  justify-content: center;
+  color: $secondary-color2;
+  font-weight: 500;
+}
+
+
+
+.pay-main {
+  background:$white;
+  box-shadow: 0px 10px 30px #0E36841A;
+  border-radius: 20px;
+  padding: 22px 10px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 12px;
+}
+
+.pay-main:last-child {
+  margin-right: 0;
+}
+
+.pay-amt h2 {
+  font-size: 20px;
+  color: $black;
+  font-weight: 600;
+}
+
+.pay-amt p {
+  font-size: 11px;
+  color: $black;
+  margin: 0;
+}
+
+.cat_circle img {
+  width: 50px
+}
+
+.right-grey {
+  background: $white;
+  border-radius: 30px;
+  padding: 15px;
+  box-shadow:0px 3px 6px #00000029;
+}
+
+.business-main {
+  background:$card;
+  padding: 32px 15px;
+  display: flex;
+  background-size: auto;
+  border-radius: 30px;
+  flex-direction: column;
+  justify-content: left;
+  &::after{
+    content: "";
+    background-image: url(../img/shape-bg-heading.png);
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+  }
+}
+
+.business-main h6 {
+  font-size: 18px;
+  color:$white;
+}
+
+.business-main p {
+  font-size: 35px;
+  font-weight: 500;
+  color:$white;
+  margin-bottom: 0;
+}
+
+.transaction h6 {
+  font-size: 18px;
+}
+
+.custom-table.table td {
+  border-top: 0;
+}
+
+.transaction .t-icon {
+  background:$white;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.transaction .t-icon i {
+  color: $danger;
+  font-size: 15px
+}
+
+.transaction .t-icon.t-icon-black i {
+  color: $black;
+  font-size: 15px
+}
+
+.transaction .t-name {
+  font-weight: 600;
+  color: $black;
+}
+
+.transaction .t-name p {
+  font-weight: 500;
+}
+
+.transaction .t-status {
+  border: 1px solid $secondary-color2;
+  border-radius: 13px;
+  padding: 5px;
+  font-size: 12px;
+  color: $secondary-color2;
+  text-align: center;
+}
+
+.transaction .t-red {
+  color: $danger;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.transaction .t-amount {
+  font-weight: 500;
+}
+.widget {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  border-radius: 6px;
+  border: 1px solid #e0e6ed;
+  box-shadow: 0 0 40px 0 rgba(94, 92, 154, 0.06);
+  &.widget-chart-one{
+    .widget-heading {
+      display: flex;
+      justify-content: space-between;
+    h5 {
+        font-weight: 700;
+        font-size: 19px;
+        letter-spacing: 0px;
+        margin-bottom: 0;
+        color: #515365;
+    }
+    ul{
+      list-style:none;
+      &.tabs {
+        a {
+          font-size: 14px;
+          letter-spacing: 1px;
+          font-weight: 600;
+          padding: 5px 7px;
+          background: #c2d5ff;
+          color: #1b55e2;
+          border-radius: 4px;
+      }
+      }
+    }
+
+}
+  }
+  
+}
+}
+.kyc-continue{
+  background:$white;
+  box-shadow: 0px 3px 6px #00000029;
+  border: 1px solid #ADADADE3;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  .user-tilte{
+    font-size: 15px;
+    color:$black;
+    font-weight: 600;
+  }
+  .user-mode{
+    font-size: 15px;
+    color:$secondary-color;
+    font-weight: 600;
+  }
+}
+

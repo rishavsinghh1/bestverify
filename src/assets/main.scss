@@ -1,0 +1,22 @@
+// File: theme.scss
+// Override default BT variables:
+$grid-breakpoints: (xs: 0,
+  sm: 576px,
+  md: 992px,
+  lg: 1200px,
+  xl: 1400px,
+  xxl: 1900px,
+);
+
+$container-max-widths: (sm: 540px,
+  md: 960px,
+  lg: 1140px,
+  xl: 1340px,
+  xxl: 1610px,
+);
+
+
+
+@import "config/config";
+@import "scss/pages";
+

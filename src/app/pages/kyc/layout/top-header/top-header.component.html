@@ -1,0 +1,22 @@
+<ul class="cd-breadcrumb nav nav-tabs mt-3 w-100" role="tablist">
+    <ng-container *ngFor="let item of tabList">
+    <li>
+      <a   [class.active]="item.active"(click)="tabClick(item.subname)" href="javascript:void(0)"  [routerLink]="[item.url]"    aria-controls="contact" role="tab" data-toggle="tab" aria-expanded="true">
+      <i class="{{item.icon}}"></i>
+      <div>{{ item.name }}
+        <h5>{{ item.heading }}</h5>
+      </div>
+      </a>
+    </li>
+</ng-container>
+    <!-- <li  (click) = "setStateAsActive('business')"  [class.active]="activeState" role="presentation">
+      <a href="#"[routerLink]="['/kyc/bussiness-detail']"    aria-controls="business" role="tab" data-toggle="tab" aria-expanded="false">
+      <i class="fas fa-briefcase"></i><div>Business Details <h5>Choose your shipping options</h5></div>
+      </a>
+    </li>
+    <li    (click) = "setStateAsActive('verify')" role="presentation" [class.active]="activeState">
+      <a href="#" [routerLink]="['/kyc/verify-document']"  aria-controls="doc" role="tab" data-toggle="tab" aria-expanded="false">
+      <i class="far fa-file-alt"></i><div>Verify Documents <h5>Choose your shipping options</h5></div></a>
+    </li>  -->
+   
+</ul>

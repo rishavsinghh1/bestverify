@@ -1,0 +1,80 @@
+@import 'sidebar.scss';
+@import 'top-header.scss';
+
+.dashboard-main {
+  display: flex;
+  flex-direction: column;
+  float: left;
+  width: calc(100% - 270px);
+  height: 100vh;
+  border-radius: 16px 0px 0px 16px;
+  padding: 0;
+  background-color: $gray-color;
+.user-mgn{
+    border: 1px solid #DADADA;
+    border-radius: 20px;
+    width: 100%;
+    form {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    
+        .form-group {
+            margin-bottom: 25px;
+    
+            .form-check {
+                margin-bottom: 0;
+            }
+        }
+    
+        label {
+            display: inline-block;
+            font-size: 14px;
+            font-weight: $font-weight-medium;
+            letter-spacing: 0.01px;
+            color: $white;
+            margin: 0;
+        }
+    
+        .form-control,
+        textarea {
+            background-color: $white;
+            color: $base-color;
+            width: 100%;
+            height: auto;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid $input-border;
+    
+            &:disabled {
+                background-color: $darkgray-color;
+            }
+    
+            &::placeholder {
+                color: $base-color;
+            }
+    
+    
+    
+    
+        }
+    
+    
+    
+    }
+}
+
+}
+
+
+::placeholder {
+    font-size: 16px;
+    letter-spacing: 0.02px;
+    font-weight: $font-weight-medium;
+    color: $darkgray-color;
+}
+
+
+
+
+

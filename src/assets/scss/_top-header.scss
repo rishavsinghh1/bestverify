@@ -1,0 +1,49 @@
+.dash-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $input-border;
+  
+    .currentBalBox{
+      display: flex;
+      background:$blue-liner;
+      border-radius: 12px;
+      padding: 11px 20px 11px 17px;
+      gap: 10px;
+      align-items: center;
+      
+      .amtBox {
+        color:$white;
+      }
+  }
+  .user_blk {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    box-shadow:0px 0px 5px 0px rgb(189, 189, 189); 
+    border-radius: 12px;
+    img{
+        border:1px solid $secondary-color2;
+        border-radius:50%;
+        width: 50px;
+  
+    }
+    button{
+        background:$white;
+        color: $black;
+        display: flex;
+        align-items: center;
+        gap: 11px;
+        padding: 5px 20px;
+        p{
+            color:$secondary-color2;
+        }
+        &:focus{
+          border:0;
+        }
+    }
+  
+  
+  }
+  }
