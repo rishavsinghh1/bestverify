@@ -31,13 +31,13 @@
                             <p>Please Login to Continue</p>
                         </div>
 
-                        <form class="signup-form">
+                        <form class="signup-form" [formGroup]="loginform">
                             <div class="form-group pd-field">
                                 <label class="label-field">Mobile Number</label>
                                 <span class="icons-form">
                                     <img class="img-fluid" src="../../../assets/img/mobile-icon.png">
                                 </span>
-                                <input  type="text" #loginEl name="name" class="form-control"   placeholder="Enter Mobile Number">
+                                <input  type="text" #loginEl name="name" formControlName="name" class="form-control"   placeholder="Enter Mobile Number">
                             </div>
 
                             <div class="form-group pd-field">
@@ -45,12 +45,12 @@
                                 <span class="icons-form">
                                     <img class="img-fluid" src="../../../assets/img/password-icon.png">
                                 </span>
-                                <input  type="text" name="Password" class="form-control"   placeholder="Enter Password">
+                                <input  type="text" name="Password" class="form-control" formControlName="password" placeholder="Enter Password">
                                 <p class="resend-otp">Forgot Password?</p>
                             </div>
 
                             
-                                <a id="openModalButton"   class="btn button-next w-100" data-toggle="modal"
+                                <a id="openModalButton"  (click)="login()"  class="btn button-next w-100" data-toggle="modal"
                                     data-target="#myModal">Login</a>
                         </form>
 
