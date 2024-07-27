@@ -4,6 +4,8 @@ import { ReactiveFormsModule,FormGroup, FormBuilder, Validators } from '@angular
 import { ApiService } from '../../../service/api.service';
 import { endpoint } from '../../../service/endpoint';
 import { HttpClientModule } from '@angular/common/http';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,9 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
 export class LoginComponent {
   loginform:any =new FormGroup({})
 
-  constructor(private fb:FormBuilder,private _apiservice:ApiService){
+  constructor(private fb:FormBuilder,private _apiservice:ApiService,public router: Router){
   this.loginform= this.fb.group({
-    name:['',Validators.required],
+    email:['',Validators.required],
     password:['',Validators.required],
   })
   }
@@ -33,12 +35,30 @@ export class LoginComponent {
   login(){
     console.log('hlw');
     let obj={
-      name:this.loginform.controls.name.value,
+      email:this.loginform.controls.email.value,
       password:this.loginform.controls.password.value,
     }
     // console.log(obj);
-    this._apiservice._postData(obj,endpoint.auth).subscribe((resp: any) => { 
+    this._apiservice._postData(obj,endpoint.auth.login).subscribe((resp: any) => { 
       console.log('Response',resp)
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      Toast.fire({
+        icon: "success",
+        title: "Signed in successfully"
+      });
+      this.router.navigate(['/dashboard']);
+      //return resp;
+
     })
   }
 }
