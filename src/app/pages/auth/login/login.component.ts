@@ -5,17 +5,18 @@ import { ApiService } from '../../../service/api.service';
 import { endpoint } from '../../../service/endpoint';
 import { HttpClientModule } from '@angular/common/http';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule,HttpClientModule],
+  imports: [ReactiveFormsModule,RouterModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
   loginform:any =new FormGroup({})
+
 
   constructor(private fb:FormBuilder,private _apiservice:ApiService,public router: Router){
   this.loginform= this.fb.group({
@@ -56,7 +57,7 @@ export class LoginComponent {
         icon: "success",
         title: "Signed in successfully"
       });
-      this.router.navigate(['/dashboard']);
+      // this.router.navigate(['/dashboard']);
       //return resp;
 
     })
