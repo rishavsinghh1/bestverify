@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { ReactiveFormsModule,FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../../../service/api.service';
@@ -6,19 +6,25 @@ import { endpoint } from '../../../service/endpoint';
 import { HttpClientModule } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { Router, RouterModule } from '@angular/router';
+import { MessageService } from '../../../service/message.service';
+import { OtpComponent } from '../otp/otp.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule,RouterModule],
+  imports: [ReactiveFormsModule,RouterModule,OtpComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+
+  @ViewChild('modal', { static: false })modal!: OtpComponent;
+
+  message:any;
   loginform:any =new FormGroup({})
 
 
-  constructor(private fb:FormBuilder,private _apiservice:ApiService,public router: Router){
+  constructor(private fb:FormBuilder,private _apiservice:ApiService,public router: Router,private _reponseMessage:MessageService){
   this.loginform= this.fb.group({
     email:['',Validators.required],
     password:['',Validators.required],
@@ -41,7 +47,10 @@ export class LoginComponent {
     }
     // console.log(obj);
     this._apiservice._postData(obj,endpoint.auth.login).subscribe((resp: any) => { 
+
       console.log('Response',resp)
+      //  this.message= this._reponseMessage._successMessage(resp.message);
+      //  return this.message;
       const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -61,5 +70,9 @@ export class LoginComponent {
       //return resp;
 
     })
+  }
+
+  openModal(){
+    this.modal.open();
   }
 }

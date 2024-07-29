@@ -15,7 +15,7 @@
                                 </a>
                                 <div class="account-yet d-flex justify-content-between align-items-center">
                                     <p>Already have an account?</p>
-                                    <button class="btn sign-pass-btn" routerLink="register">
+                                    <button class="btn sign-pass-btn" routerLink="/register">
                                         Sign up
                                     </button>
                                 </div>
@@ -52,6 +52,8 @@
                             
                                 <a id="openModalButton"  (click)="login()"  class="btn button-next w-100" data-toggle="modal"
                                     data-target="#myModal">Login</a>
+
+                                    <button (click)="openModal()">Open Modal</button>
                         </form>
 
                     </div>
@@ -66,9 +68,9 @@
         </div>
     </div>
 </section>
+<app-otp #modal></app-otp>
 
-
-<div class="model-sign-otp">
+<!-- <div class="model-sign-otp">
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog modal-md modal-dialog-centered">
             <div class="modal-content">
@@ -101,4 +103,4 @@
             </div>
         </div>
     </div>
-</div> 
+</div>  -->

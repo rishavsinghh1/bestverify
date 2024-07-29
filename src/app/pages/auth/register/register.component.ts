@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ApiService } from '../../../service/api.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { endpoint } from '../../../service/endpoint';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule,RouterModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
