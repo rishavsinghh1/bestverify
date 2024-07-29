@@ -47,7 +47,8 @@ export class LoginComponent {
     }
     // console.log(obj);
     this._apiservice._postData(obj,endpoint.auth.login).subscribe((resp: any) => { 
-
+      if(resp.code == 200){
+        this.router.navigate(['/dashboard']);
       console.log('Response',resp)
       //  this.message= this._reponseMessage._successMessage(resp.message);
       //  return this.message;
@@ -66,6 +67,7 @@ export class LoginComponent {
         icon: "success",
         title: "Signed in successfully"
       });
+    }
       // this.router.navigate(['/dashboard']);
       //return resp;
 

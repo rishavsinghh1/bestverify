@@ -37,24 +37,29 @@ export class RegisterComponent {
     }
 
     this._apiservice._postData(obj,endpoint.auth.register).subscribe((resp: any) => { 
-      console.log('Response',resp)
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        }
-      });
-      Toast.fire({
-        icon: "success",
-        title: "Register successfully"
-      });
-      // this.router.navigate(['/dashboard']);
-      //return resp;
+      if(resp.code == 200){
+        this.router.navigate(['/dashboard']);
+        console.log('Response',resp)
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        Toast.fire({
+          icon: "success",
+          title: "Register successfully"
+        });
+        // this.router.navigate(['/dashboard']);
+        //return resp;
+        
+      }
+    
 
     })
   }
