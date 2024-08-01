@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
+  production: true,
   apiUrl: 'https://staging.bestverify.in:3002/api/v1/'
 };

@@ -17,7 +17,7 @@ export class OtpComponent {
 
   config = {
     allowNumbersOnly: false,
-    length: 5,
+    length: 6,
     isPasswordInput: false,
     disableAutoFocus: false,
     placeholder: '',
