@@ -82,8 +82,8 @@
     margin-bottom: 2rem;
     .form-dropdown {
       position: absolute;
-      background: #fff;
-      color: #212529;
+      background:$white;
+      color: $base-color;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.1607843137);
       border-radius: 14px;
       width: 280px;
@@ -99,7 +99,7 @@
         height: 0;
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
-        border-bottom: 10px solid #fff;
+        border-bottom: 10px solid $white;
         margin: -10px 0 0 30px;
         top: 0;
         left: 36%;
@@ -109,13 +109,13 @@
           font-family: Roboto;
           font-weight: 300;
           font-size: 15px;
-          color: #000924;
+          color: $base-color;
           .fa-check {
-            color: #6bc148;
+            color: $green2;
             font-weight: 500;
           }
           .fa-times {
-            color: #ff0000;
+            color: $danger;
             font-weight: 500;
           }
         }
@@ -124,7 +124,7 @@
     .resend-otp {
       text-align: right;
       letter-spacing: 0.01px;
-      color: #050862;
+      color:$secondary-color;
       margin: 0;
       margin-top: 10px;
       font-weight: 500;
@@ -139,14 +139,14 @@
       position: absolute;
       top: -17px;
       left: 36px;
-      color: #fff;
-      background: #a1e0a4;
+      color: $white;
+      background:$green;
       padding: 1px 16px;
       border-radius: 25px;
       transition: 0.3s;
 
       &:hover {
-        background: #368c3a;
+        background: $green2;
       }
     }
 
@@ -157,23 +157,23 @@
     }
 
     .form-control {
-      border: 1px solid #aaaaaa;
+      border: 1px solid $gray-color1;
       height: 55px;
       border-radius: 10px;
 
       &::placeholder {
         font: normal normal normal 16px/25px Roboto;
         letter-spacing: 0px;
-        color: #101f33;
+        color: $secondary-color6;
         font-size: 16px;
       }
     }
   }
   .btn {
     &.button-next {
-      background:#050862;
-      color: #fff;
-      border: 1px solid #aaa;
+      background:$secondary-color5;
+      color:$white;
+      border: 1px solid $gray-color1;
       border-radius: 10px;
       font-weight: 600;
       padding: 16px;
@@ -182,3 +182,6 @@
   }
 }
 
+.bg-custom-2 {
+  background-image: $blue-liner2;
+  }
