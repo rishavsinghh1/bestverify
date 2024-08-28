@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
  
 export const myInterceptor: HttpInterceptorFn = (req, next) => {
  
-  if (req.url.includes("auth/login") ) {
+  if (req.url.includes("auth/login") || req.url.includes("auth/verify") ) {
     req = req.clone({
       headers: req.headers.set('token', '22509F2AE7BA71E4C3FB32AB94B6CEA8'),
     }) 

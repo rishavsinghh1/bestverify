@@ -25,36 +25,41 @@
                 </div>
 
                 <div class="row align-items-center pt-5 pb-5">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="signup-title pb-5 pt-4">
                             <h2>Welcome to <span>Best Verify!</span></h2>
                             <p>Please Register</p>
                         </div>
                         <form class="signup-form" [formGroup]="regFrm">
+                            <div class="row">
+                            <div class="col-12 col-lg-6">
                             <div class="form-group pd-field">
                                 <label class="label-field">Name</label>
                                 <span class="icons-form">
-                                    <img class="img-fluid" src="../../../assets/img/mobile-icon.png">
+                                    <img class="img-fluid" src="../../../assets/img/user-icon.png">
                                 </span>
                                 <input  type="text" #loginEl name="name" formControlName="name"  class="form-control"   placeholder="Enter Namne">
                             </div>
-
+                        </div>
+                        <div class="col-12 col-lg-6">
                             <div class="form-group pd-field">
                                 <label class="label-field">User Name</label>
                                 <span class="icons-form">
-                                    <img class="img-fluid" src="../../../assets/img/mobile-icon.png">
+                                    <img class="img-fluid" src="../../../assets/img/user-icon.png">
                                 </span>
                                 <input  type="text" #loginEl name="username"  class="form-control"  formControlName="username"  placeholder="Enter UserName">
                             </div>
-
+                            </div>
+                            <div class="col-12 col-lg-6">
                             <div class="form-group pd-field">
                                 <label class="label-field">Firm Name</label>
                                 <span class="icons-form">
-                                    <img class="img-fluid" src="../../../assets/img/mobile-icon.png">
+                                    <img class="img-fluid" src="../../../assets/img/user-icon.png">
                                 </span>
                                 <input  type="text" #loginEl name="firmname"  formControlName="firmname" class="form-control"   placeholder="Enter Firm Name">
                             </div>
-
+                            </div>
+                            <div class="col-12 col-lg-6">
                             <div class="form-group pd-field">
                                 <label class="label-field">Mobile</label>
                                 <span class="icons-form">
@@ -62,50 +67,57 @@
                                 </span>
                                 <input  type="text" #loginEl name="phone"  class="form-control"  formControlName="phone"  placeholder="Enter Mobile">
                             </div>
+                            </div>
 
-
+                            <div class="col-12 col-lg-6">
                             <div class="form-group pd-field">
                                 <label class="label-field">Email</label>
                                 <span class="icons-form">
-                                    <img class="img-fluid" src="../../../assets/img/mobile-icon.png">
+                                    <img class="img-fluid" src="../../../assets/img/email-icon.png">
                                 </span>
                                 <input  type="text" #loginEl name="email"  formControlName="email"  class="form-control"   placeholder="Enter Email">
                             </div>
+                            </div>
 
+                          <div class="col-12 col-lg-6">
                             <div class="form-group pd-field">
                                 <label class="label-field"> Password</label>
                                 <span class="icons-form">
                                     <img class="img-fluid" src="../../../assets/img/password-icon.png">
                                 </span>
                                 <input  type="text" name="Password"   formControlName="password" class="form-control"  placeholder="Enter Password">
-                                <p class="resend-otp">Forgot Password?</p>
+                               
                             </div>
+                            </div>
+
+                            <div class="col-12 col-lg-12">
                             <div class="form-group pd-field">
                                 <label class="label-field">Address</label>
                                 <span class="icons-form">
-                                    <img class="img-fluid" src="../../../assets/img/password-icon.png">
+                                    <img class="img-fluid" src="../../../assets/img/loca-icon-basic.png">
                                 </span>
                               <textarea name="address" formControlName="address" class="form-control"  placeholder="Enter Address"></textarea>
     
+                            </div>
                             </div>
 
                             
                                 <a id="openModalButton" (click)="register()"  class="btn button-next w-100" data-toggle="modal"
                                     data-target="#myModal">Register</a>
+                                </div>
                         </form>
                         <button class="btn sign-pass-btn" routerLink="/login">
                           Login
                         </button>
                     </div>
-                    <div class="col-lg-6 col-xs-12 col-sm-12 login_form">
+                    <!-- <div class="col-lg-6 col-xs-12 col-sm-12 login_form">
                         <figure class="signup-img text-right">
                             <img class="img-fluid" src="../../../assets/img/signup-img.png" alt="signup-img.png">
                         </figure>
-                    </div>
+                    </div> -->
                 </div>
             </div>
     
         </div>
     </div>
 </section>
-
