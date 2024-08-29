@@ -45,7 +45,8 @@
                <li>
                    <div class="d-flex profileBox px-3"><div><img  title="Profile" src="../../../assets/img/user.png"></div><div ><span >TESTING FIRM</span><span >Hello</span></div></div>
                </li>
-               <li><a href="#"><i class="fas fa-sign-out-alt pe-2"></i>Logout</a></li>
+               <li><a href="#" (click)="logout()"><i class="fas fa-sign-out-alt pe-2"></i>Logout</a></li>
+                <!-- <button type="button" (click)="logout()">Logout</button> -->
            </ul>
        </div>
    </div>
@@ -60,7 +61,8 @@
                       <div  class="walletIconBox"><img src="../../../assets/img/wallet.png"></div>
                       <div  class="amtBox">
                           <div >Total Balance</div>
-                          <div >₹ 9,59,994.56</div>
+                          <!-- <div >₹ 9,59,994.56</div> -->
+                          <div >₹ {{userbalance}}</div>
                       </div>
                       <div  class="reloadBox"><a
                               href="javascript:void(0);"><svg
