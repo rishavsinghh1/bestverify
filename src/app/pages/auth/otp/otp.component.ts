@@ -49,7 +49,7 @@ export class OtpComponent {
       }
       console.log(this.otp);
       this._apiservice._postData(obj,endpoint.auth.otp).subscribe((resp: any) => { 
-      this._sessionStore.setData('loginsession',resp);
+      this._sessionStore.setUserData('loginsession',resp);
       })
 
 
