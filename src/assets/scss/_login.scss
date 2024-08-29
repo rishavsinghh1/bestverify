@@ -140,7 +140,7 @@
       top: -17px;
       left: 36px;
       color: #fff;
-      background: #a1e0a4;
+      background:#595aa7;// #a1e0a4;
       padding: 1px 16px;
       border-radius: 25px;
       transition: 0.3s;
@@ -178,90 +178,6 @@
       font-weight: 600;
       padding: 16px;
       font-size: 16px;
-    }
-  }
-}
-
-.model-sign-otp {
-  .modal-content {
-    overflow: hidden;
-    border-radius: 30px;
-    border: none;
-    padding: 30px;
-    .modal-otp {
-      h4 {
-        font: normal normal 600 18px/17px Roboto;
-        letter-spacing: 0.02px;
-        color: #000924;
-        font-size: 18px;
-      }
-      p {
-        font: normal normal normal 15px/40px Roboto;
-        margin-top: 12px;
-        line-height: 26px;
-        color: #101f33;
-      }
-      .inputfield {
-        display: inline-block;
-        .input {
-          height: 44px;
-          width: 44px;
-          border: 1px solid #050862;
-          text-align: center;
-          font-size: 1.5em;
-          margin-right: 12px;
-          border-radius: 0.3em;
-          background-color: #fff;
-          outline: none;
-          -moz-appearance: textfield;
-
-          &[type="number"] {
-            &::-webkit-outer-spin-button {
-              -webkit-appearance: none;
-              margin: 0;
-            }
-            &::-webkit-inner-spin-button {
-              -webkit-appearance: none;
-              margin: 0;
-            }
-          }
-
-          &:focus {
-            background: #e0eef5;
-          }
-        }
-      }
-      .resend-otp {
-        text-align: right;
-        letter-spacing: 0.01px;
-        color: #050862;
-        margin: 0;
-        margin-top: 10px;
-        font-weight: 500;
-        display: block;
-      }
-    }
-
-    .btn-close {
-      position: absolute;
-      right: 8px;
-      background: #94c9e8;
-      border-radius: 18px;
-      border: transparent;
-      color: #fff;
-      height: 36px;
-      width: 36px;
-      opacity: 0.4;
-      top: 10px;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      span {
-        font-weight: 400;
-        font-size: 1.6rem;
-      }
     }
   }
 }

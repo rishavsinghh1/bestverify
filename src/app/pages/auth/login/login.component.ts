@@ -1,23 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { ReactiveFormsModule,FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../../../service/api.service';
 import { endpoint } from '../../../service/endpoint';
 import { HttpClientModule } from '@angular/common/http';
+import Swal from 'sweetalert2';
+import { Router, RouterModule } from '@angular/router';
+import { MessageService } from '../../../service/message.service';
+import { OtpComponent } from '../otp/otp.component';
+import { CommonService } from '../../../service/common.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule,HttpClientModule],
+  imports: [ReactiveFormsModule,RouterModule,OtpComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
+
+  @ViewChild('modal', { static: false })modal!: OtpComponent;
+  message:any;
   loginform:any =new FormGroup({})
 
-  constructor(private fb:FormBuilder,private _apiservice:ApiService){
+
+  constructor(private _commonservice:CommonService,private fb:FormBuilder,private _apiservice:ApiService,public router: Router,private _reponseMessage:MessageService){
   this.loginform= this.fb.group({
-    name:['',Validators.required],
+    email:['',Validators.required],
     password:['',Validators.required],
   })
   }
@@ -33,12 +42,80 @@ export class LoginComponent {
   login(){
     console.log('hlw');
     let obj={
-      name:this.loginform.controls.name.value,
+      email_phone:this.loginform.controls.email.value,
       password:this.loginform.controls.password.value,
+      latitude:'25.5940947',
+      longitude:'25.5940947',
+      type:1
+
     }
     // console.log(obj);
-    this._apiservice._postData(obj,endpoint.auth).subscribe((resp: any) => { 
-      console.log('Response',resp)
+    this._apiservice._postData(obj,endpoint.auth.login).subscribe((resp: any) => { 
+      if(resp.statuscode == 200 && resp.responsecode == 2){
+         let emitdata ={
+          phoneno:resp.data.phone,
+          email:obj.email_phone
+         }
+        this._commonservice.sendData(emitdata);
+        //this.mobno= resp.data;
+        this.openModal();
+      //   this.router.navigate(['/dashboard']);
+      //  console.log('Response',resp) 
+      // const Toast = Swal.mixin({
+      //   toast: true,
+      //   position: "top-end",
+      //   showConfirmButton: false,
+      //   timer: 3000,
+      //   timerProgressBar: true,
+      //   didOpen: (toast) => {
+      //     toast.onmouseenter = Swal.stopTimer;
+      //     toast.onmouseleave = Swal.resumeTimer;
+      //   }
+      // });
+      // Toast.fire({
+      //   icon: "success",
+      //   title: "Signed in successfully"
+      // });
+   } else if(resp.statuscode == 200 && resp.responsecode == 1){
+      this.router.navigate(['/dashboard']);
+       console.log('Response',resp) 
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      Toast.fire({
+        icon: "success",
+        title: "Signed in successfully"
+      });
+   }else{
+    const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+    Toast.fire({
+      icon: "error",
+      title: resp.message
+    });
+   }
+
     })
+  }
+
+  openModal(){
+    this.modal.open();
   }
 }

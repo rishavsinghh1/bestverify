@@ -2,7 +2,9 @@
 
 export var endpoint = {
   auth:{
-    login: "auth/login",
+    login: "corporate/auth/login",
+    register:"auth/create",
+    otp:"corporate/auth/verify"
   },
   dashboard:{
 
