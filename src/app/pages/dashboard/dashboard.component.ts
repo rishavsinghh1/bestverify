@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../service/api.service';
 import { endpoint } from '../../service/endpoint';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,10 +12,10 @@ import { endpoint } from '../../service/endpoint';
 })
 export class DashboardComponent {
   userbalance:any;
-  constructor(private _apiservice:ApiService){
+  constructor(private _apiservice:ApiService,private route:Router){
     let obj ={};
 
-    this._apiservice._postData(obj,endpoint.auth.balance).subscribe((resp: any) => { 
+    this._apiservice._postData(obj,endpoint.auth.balance).subscribe((resp: any) => {
       this.userbalance=resp.balance;
       console.log('====================================');
       console.log(`data`,resp);
@@ -25,10 +26,10 @@ export class DashboardComponent {
   logout(){
     console.log('hlw');
     let obj ={};
-    this._apiservice._postData(obj,endpoint.auth.logout).subscribe((resp: any) => { 
-      console.log('====================================');
-      console.log(`user-logout`,resp);
-      console.log('====================================');
+    this._apiservice._postData(obj,endpoint.auth.logout).subscribe((resp: any) => {
+     if(resp.status && resp.statuscode == 200){
+      this.route.navigateByUrl('/login');
+     }
     })
   }
 }
