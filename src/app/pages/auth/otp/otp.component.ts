@@ -4,6 +4,8 @@ import { CommonService } from '../../../service/common.service';
 import { ApiService } from '../../../service/api.service';
 import { endpoint } from '../../../service/endpoint';
 import { SessionstorageService } from '../../../service/sessionstorage.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-otp',
@@ -19,7 +21,7 @@ export class OtpComponent {
   @ViewChild('ngOtpInput', { static: false}) ngOtpInput: any;
   otp: any;
   data:any;
-  constructor(private _commonservice: CommonService,private _apiservice:ApiService,private _sessionStore:SessionstorageService) { 
+  constructor(public router: Router,private _commonservice: CommonService,private _apiservice:ApiService,private _sessionStore:SessionstorageService) { 
     this._commonservice.data$.subscribe(data => {
       this.data = data;
       console.log('data_phone',data)
@@ -50,6 +52,25 @@ export class OtpComponent {
       console.log(this.otp);
       this._apiservice._postData(obj,endpoint.auth.otp).subscribe((resp: any) => { 
       this._sessionStore.setUserData('loginsession',resp);
+      if(resp.statuscode == 200 && resp.responsecode == 1){
+        this.router.navigate(['/dashboard']);
+        console.log('Response',resp) 
+       const Toast = Swal.mixin({
+         toast: true,
+         position: "top-end",
+         showConfirmButton: false,
+         timer: 3000,
+         timerProgressBar: true,
+         didOpen: (toast) => {
+           toast.onmouseenter = Swal.stopTimer;
+           toast.onmouseleave = Swal.resumeTimer;
+         }
+       });
+       Toast.fire({
+         icon: "success",
+         title: "Signed in successfully"
+       });
+      }
       })
 
 

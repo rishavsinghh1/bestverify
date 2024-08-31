@@ -5,8 +5,10 @@ export var endpoint = {
     login: "corporate/auth/login",
     register:"auth/create",
     otp:"corporate/auth/verify",
-    balance:"console/userBalance"
+    balance:"console/userBalance",
+    logout:"console/user/logout",
   },
+ 
   dashboard:{
 
   }
