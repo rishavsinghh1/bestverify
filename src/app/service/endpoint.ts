@@ -7,6 +7,7 @@ export var endpoint = {
     otp:"corporate/auth/verify",
     balance:"console/userBalance",
     logout:"console/user/logout",
+    companylist:'corporate/user/company-list',
   },
  
   dashboard:{
