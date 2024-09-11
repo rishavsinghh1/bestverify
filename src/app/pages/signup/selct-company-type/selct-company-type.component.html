@@ -1,0 +1,34 @@
+<form  method="post" class="signup-form">
+    <div class="form-group pd-field">
+        <label class="label-field">Company List</label>
+        <span class="icons-form">
+            <img class="img-fluid" src="../../../assets/img/users3.png">
+        </span>
+        <!-- <input  type="text"  name="name"  class="form-control"> -->
+
+        <ng-autocomplete
+        [data]="companylist"
+        [searchKeyword]="keyword"
+        placeholder="Enter the ompany Name"
+        (selected)='selectEvent($event)'
+        (inputChanged)='onChangeSearch($event)'
+        (inputFocused)='onFocused($event)'
+        historyIdentifier="companylist"
+        [itemTemplate]="itemTemplate"
+        [notFoundTemplate]="notFoundTemplate">
+      </ng-autocomplete>
+    
+      <ng-template #itemTemplate let-item>
+        <a [innerHTML]="item.name"></a>
+      </ng-template>
+    
+      <ng-template #notFoundTemplate let-notFound>
+        <div [innerHTML]="notFound"></div>
+      </ng-template>
+   
+    </div> 
+
+    <button type="submit" class="btn button-next w-40" >Previous</button>       
+       
+</form> 
+<button type="submit" (click)="addcompny()" class="btn button-next w-40 pull-right" >Next </button>     

@@ -58,7 +58,8 @@ export class LoginComponent {
       if(resp.statuscode == 200 && resp.responsecode == 2){
          let emitdata ={
           phoneno:resp.data.phone,
-          email:obj.email_phone
+          email:obj.email_phone,
+          password:obj.password
          }
         this._commonservice.sendData(emitdata);
         //this.mobno= resp.data;
