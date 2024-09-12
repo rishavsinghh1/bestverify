@@ -10,6 +10,7 @@ export var endpoint = {
     balance:"console/userBalance",
     logout:"console/user/logout",
     companylist:'corporate/user/company-list',
+    forgotpassword:'corporate/auth/user-forgot-password',
   },
 
   dashboard:{
