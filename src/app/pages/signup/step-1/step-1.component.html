@@ -1,85 +1,294 @@
-<!-- <form method="post" class="signup-form">
-    <div class="form-group pd-field">
+<form class="signup-form" [formGroup]="addUserForms">
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <div class="form-group pd-field">
         <label class="label-field">First Name</label>
         <span class="icons-form">
-            <img class="img-fluid" src="../../../assets/img/users3.png">
+          <img class="img-fluid" src="../../../assets/img/user-icon.png" />
         </span>
-        <input  type="text"  name="name" autocomplete="off"  class="form-control">
+        <input
+          type="text"
+          [ngClass]="{
+            'is-invalid': submitted && loginControls['firstName'].errors
+          }"
+          autocomplete="off"
+          formControlName="firstName"
+          name="fname"
+          class="form-control"
+        />
+
+        <div
+          *ngIf="loginControls['firstName'].touched || submitted"
+          class="mt-1"
+        >
+          <span
+            class="text-danger"
+            *ngIf="loginControls['firstName'].errors?.['required']"
+          >
+            First Name is Required
+          </span>
+
+          <span
+            class="text-danger"
+            *ngIf="loginControls['firstName'].errors?.['minlength']"
+          >
+            First Name must be at least 2 characters long.
+          </span>
+
+          <span
+            class="text-danger"
+            *ngIf="loginControls['firstName'].errors?.['maxlength']"
+          >
+            First Name can be max 15 characters long.
+          </span>
+        </div>
+      </div>
     </div>
-    <div class="form-group pd-field">
-        <label class="label-field">last Name</label>
+    <div class="col-12 col-lg-6">
+      <div class="form-group pd-field">
+        <label class="label-field">Last Name</label>
         <span class="icons-form">
-            <img class="img-fluid" src="../../../assets/img/us3er.png">
+          <img class="img-fluid" src="../../../assets/img/user-icon.png" />
         </span>
-        <input  type="text"  name="name" autocomplete="off" class="form-control">
+        <input
+          type="text"
+          name="lastname"
+          autocomplete="new-password"
+          formControlName="lastName"
+          class="form-control"
+        />
+        <div
+          *ngIf="loginControls['lastName'].touched || submitted"
+          class="mt-1"
+        >
+          <span
+            class="text-danger"
+            *ngIf="loginControls['lastName'].errors?.['required']"
+          >
+            Last Name is Required
+          </span>
+          <span
+            class="text-danger"
+            *ngIf="loginControls['lastName'].errors?.['minlength']"
+          >
+            Last Name must be at least 2 characters long.
+          </span>
+
+          <span
+            class="text-danger"
+            *ngIf="loginControls['lastName'].errors?.['maxlength']"
+          >
+            Last Name can be max 15 characters long.
+          </span>
+        </div>
+      </div>
     </div>
-    <div class="form-group pd-field">
+  </div>
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <div class="form-group pd-field">
         <label class="label-field">Email</label>
         <span class="icons-form">
-            <img class="img-fluid" src="../../../../assets/img/u3ser.png">
+          <img class="img-fluid" src="../../../assets/img/user-icon.png" />
         </span>
-        <input  type="text"  name="email" autocomplete="off" class="form-control">
+        <input
+          type="email"
+          name="email"
+          autocomplete="off"
+          formControlName="username"
+          class="form-control"
+        />
+        <app-show-errors [ctrl]="addUserForms.get('username')">
+        </app-show-errors>
+      </div>
     </div>
-
-    <div class="form-group pd-field">
-        <label class="label-field">Enter Password</label>
+    <div class="col-12 col-lg-6">
+      <div class="form-group pd-field">
+        <label class="label-field"> Password</label>
         <span class="icons-form">
-            <img class="img-fluid" src="../../../assets/img/password-icon.png">
+          <img class="img-fluid" src="../../../assets/img/password-icon.png" />
         </span>
-        <input  type="password" autocomplete="off" name="Password" class="form-control"> 
-    </div>
-
-    <div class="form-group pd-field">
-        <label class="label-field">Enter Confirm Password</label>
-        <span class="icons-form">
-            <img class="img-fluid" autocomplete="off" src="../../../assets/img/password-icon.png">
-        </span>
-        <input  type="password" name="confirm_Password" class="form-control"> 
-    </div>
-
-   
-</form>
-<button type="submit" (click)="submitStep1()" class="btn button-next w-100" >Next Step</button>  -->
-
-
-
-<form class="signup-form">
-    <div class="row">
-        <div class="col-12 col-lg-6">
-            <div class="form-group pd-field">
-                <label class="label-field">User Name</label>
-                <span class="icons-form">
-                    <img class="img-fluid" src="../../../assets/img/user-icon.png">
-                </span>
-                <input  type="text" #loginEl name="username"  class="form-control"   placeholder="Enter UserName">
-            </div>
-         </div>
-        <div class="col-12 col-lg-6">
-            <div class="form-group pd-field">
-                <label class="label-field"> Password</label>
-                <span class="icons-form">
-                    <img class="img-fluid" src="../../../assets/img/password-icon.png">
-                </span>
-                <input  type="text" name="Password" class="form-control"  placeholder="Enter Password">
-            
-            </div>
+        <input
+          type="password"
+          name="Password"
+          class="form-control"
+          autocomplete="new-password"
+          formControlName="password"
+          (focus)="showErrorBox = true"
+          (blur)="showErrorBox = false"
+          appShowHidePassword
+        />
+        <div
+          *ngIf="loginControls['password'].touched || submitted"
+          class="mt-1"
+        >
+          <span
+            class="text-danger"
+            *ngIf="loginControls['password'].errors?.['required']"
+          >
+            Password is Required
+          </span>
+          <span
+            class="text-danger"
+            *ngIf="
+              loginControls['password'].hasError('minlength') ||
+              loginControls['password'].hasError('hasNumber') ||
+              loginControls['password'].hasError('hasCapitalCase') ||
+              loginControls['password'].hasError('hasSmallCase') ||
+              loginControls['password'].hasError('hasSpecialCharacters')
+            "
+          >
+            Password is not valid
+          </span>
         </div>
+        <div *ngIf="showErrorBox" class="mt-1 showValBoxList">
+          <span
+            class="col"
+            [ngClass]="
+              loginControls['password'].hasError('required') ||
+              loginControls['password'].hasError('minlength')
+                ? 'text-danger'
+                : 'text-success'
+            "
+          >
+            <i
+              [ngClass]="
+                loginControls['password'].hasError('required') ||
+                loginControls['password'].hasError('minlength')
+                  ? 'far fa-times-circle'
+                  : 'far fa-check-circle'
+              "
+            ></i>
+            Must be at least 8 characters!
+          </span>
+          <span
+            class="col"
+            [ngClass]="
+              loginControls['password'].hasError('required') ||
+              loginControls['password'].hasError('hasNumber')
+                ? 'text-danger'
+                : 'text-success'
+            "
+          >
+            <i
+              [ngClass]="
+                loginControls['password'].hasError('required') ||
+                loginControls['password'].hasError('hasNumber')
+                  ? 'far fa-times-circle'
+                  : 'far fa-check-circle'
+              "
+            ></i>
+            Must contain at least 1 number!
+          </span>
+          <span
+            class="col"
+            [ngClass]="
+              loginControls['password'].hasError('required') ||
+              loginControls['password'].hasError('hasCapitalCase')
+                ? 'text-danger'
+                : 'text-success'
+            "
+          >
+            <i
+              [ngClass]="
+                loginControls['password'].hasError('required') ||
+                loginControls['password'].hasError('hasCapitalCase')
+                  ? 'far fa-times-circle'
+                  : 'far fa-check-circle'
+              "
+            ></i>
+            Must contain at least 1 in Capital Case!
+          </span>
+          <span
+            class="col"
+            [ngClass]="
+              loginControls['password'].hasError('required') ||
+              loginControls['password'].hasError('hasSmallCase')
+                ? 'text-danger'
+                : 'text-success'
+            "
+          >
+            <i
+              [ngClass]="
+                loginControls['password'].hasError('required') ||
+                loginControls['password'].hasError('hasSmallCase')
+                  ? 'far fa-times-circle'
+                  : 'far fa-check-circle'
+              "
+            ></i>
+            Must contain at least 1 Letter in Small Case!
+          </span>
+          <span
+            class="col"
+            [ngClass]="
+              loginControls['password'].hasError('required') ||
+              loginControls['password'].hasError('hasSpecialCharacters')
+                ? 'text-danger'
+                : 'text-success'
+            "
+          >
+            <i
+              [ngClass]="
+                loginControls['password'].hasError('required') ||
+                loginControls['password'].hasError('hasSpecialCharacters')
+                  ? 'far fa-times-circle'
+                  : 'far fa-check-circle'
+              "
+            ></i>
+            Must contain at least 1 Special Character!
+          </span>
+        </div>
+      </div>
     </div>
-    <div class="row">
-        <div class="col-12 col-lg-6">
-            <div class="form-group pd-field">
-                <label class="label-field">Confirm Password</label>
-                <span class="icons-form">
-                    <img class="img-fluid" src="../../../assets/img/user-icon.png">
-                </span>
-                <input  type="text" #loginEl name="confirmpassword"  class="form-control"   placeholder="Enter Confirm Password">
-            </div>
-         </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <div class="form-group pd-field">
+        <label class="label-field">Confirm Password</label>
+        <span class="icons-form">
+          <img class="img-fluid" src="../../../assets/img/user-icon.png" />
+        </span>
+        <input
+          type="password"
+          name="confirmpassword"
+          id="cnfp"
+          class="form-control"
+          autocomplete="new-password"
+          formControlName="confirmPassword"
+          appShowHidePassword
+        />
+        <div
+          *ngIf="loginControls['confirmPassword'].touched || submitted"
+          class="mt-1"
+        >
+          <span
+            class="text-danger"
+            *ngIf="loginControls['confirmPassword'].errors?.['required']"
+          >
+            Confirm Password is Required
+          </span>
+
+          <div
+            class="text-danger"
+            *ngIf="
+              addUserForms.controls['confirmPassword'].hasError(
+                'confirmedValidator'
+              )
+            "
+          >
+            Password and confirm Password not matched
+          </div>
+        </div>
+      </div>
     </div>
-<!-- 
-    
-        <a id="openModalButton" (click)="register()"  class="btn button-next w-100" data-toggle="modal"
-            data-target="#myModal">Register</a>
-        </div> -->
+  </div>
+
+  <button
+    type="submit"
+    (click)="getStart()"
+    [disabled]="!addUserForms.valid"
+    class="btn button-next w-100"
+  >
+    Next Step
+  </button>
 </form>
-<button type="submit" (click)="submitStep1()" class="btn button-next w-100" >Next Step</button> 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonService } from '../../../service/common.service';
+import { SessionstorageService } from '../../../service/sessionstorage.service';
 
 @Component({
   selector: 'app-signup-step-2',
@@ -9,15 +10,13 @@ import { CommonService } from '../../../service/common.service';
   styleUrl: './step-2.component.scss'
 })
 export class Step2Component {
-constructor(private  _commonservice:CommonService){
+constructor(private  _commonservice:CommonService,private _sessionstore:SessionstorageService){
 
 }
 ngOnInit(){
-  this._commonservice.data$.subscribe((res:any)=>{
-    console.log(res);
-    
-  
-  })
+
+  let data = this._sessionstore.getUserData('step1signup');
+  console.log(data);
 }
 
 goToPrevious(){
