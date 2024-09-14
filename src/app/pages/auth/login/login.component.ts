@@ -3,7 +3,6 @@ import { environment } from '../../../../environments/environment';
 import { ReactiveFormsModule,FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../../../service/api.service';
 import { endpoint } from '../../../service/endpoint';
-import { HttpClientModule } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { Router, RouterModule } from '@angular/router';
 import { MessageService } from '../../../service/message.service';
@@ -64,57 +63,14 @@ export class LoginComponent {
         this._commonservice.sendData(emitdata);
         //this.mobno= resp.data;
         this.openModal();
-      //   this.router.navigate(['/dashboard']);
-      //  console.log('Response',resp)
-      // const Toast = Swal.mixin({
-      //   toast: true,
-      //   position: "top-end",
-      //   showConfirmButton: false,
-      //   timer: 3000,
-      //   timerProgressBar: true,
-      //   didOpen: (toast) => {
-      //     toast.onmouseenter = Swal.stopTimer;
-      //     toast.onmouseleave = Swal.resumeTimer;
-      //   }
-      // });
-      // Toast.fire({
-      //   icon: "success",
-      //   title: "Signed in successfully"
-      // });
+        this._reponseMessage._successaAlert(resp.message,'success'); 
    } else if(resp.statuscode == 200 && resp.responsecode == 1){
       this.router.navigate(['/dashboard']);
-       console.log('Response',resp)
-      const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.onmouseenter = Swal.stopTimer;
-          toast.onmouseleave = Swal.resumeTimer;
-        }
-      });
-      Toast.fire({
-        icon: "success",
-        title: "Signed in successfully"
-      });
+       console.log('Response',resp) 
+      this._reponseMessage._successaAlert(resp.message,'success');
    }else{
-    const Toast = Swal.mixin({
-      toast: true,
-      position: "top-end",
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.onmouseenter = Swal.stopTimer;
-        toast.onmouseleave = Swal.resumeTimer;
-      }
-    });
-    Toast.fire({
-      icon: "error",
-      title: resp.message
-    });
+    this._reponseMessage._successaAlert(resp.message,'error');
+     
    }
 
     })
