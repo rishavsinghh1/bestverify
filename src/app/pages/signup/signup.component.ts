@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Step1Component } from './step-1/step-1.component';
-import { Step2Component } from './step-2/step-2.component';
+import { Step1Component } from './step-1/step-1.component'; 
 import { SelctCompanyTypeComponent } from './selct-company-type/selct-company-type.component';
 import { CommonService } from '../../service/common.service';
 import { NgIf } from '@angular/common';
@@ -10,7 +9,7 @@ import { SessionstorageService } from '../../service/sessionstorage.service';
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [Step1Component,Step2Component,SelctCompanyTypeComponent,NgIf],
+  imports: [Step1Component,SelctCompanyTypeComponent,NgIf],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss'
 })

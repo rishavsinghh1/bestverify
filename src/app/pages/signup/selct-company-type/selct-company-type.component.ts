@@ -11,6 +11,7 @@ import { NgFor, NgIf } from '@angular/common';
 import { InputRestrictionDirective } from '../../../utility/InputRestriction/input-restriction.directive';
 import { DynamicOtpComponent } from '../../../utility/component/dynamic-otp/dynamic-otp.component';
 import { SessionstorageService } from '../../../service/sessionstorage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-selct-company-type',
@@ -30,7 +31,7 @@ export class SelctCompanyTypeComponent {
   enteredOTP: any = '';
   userData: any;
   otpTimer = false;
-constructor(private sharedService:SharedService,private _apiservice:ApiService,private fb:FormBuilder,private session:SessionstorageService){
+constructor(private router:Router,private _apiservice:ApiService,private fb:FormBuilder,private session:SessionstorageService){
 
   this.longitude = 29.00;
         this.latitude = 29.00;
@@ -55,7 +56,9 @@ ngOnInit(): void {
   if (session) {
     this.userData = session;
     //console.log(this.userData);
-  };
+  }else{
+    this.router.navigateByUrl('/signup')
+  }
 }
 
 formInit() {
@@ -212,23 +215,23 @@ sendOTP() {
   formData.append('fname', this.userData.firstName);
   formData.append('lname', this.userData.lastName);
   this._apiservice._postData(formData,endpoint.auth.finalregister).subscribe({
-    next: (res: any) => {
-      // if (res) {
-      //   if (res.statuscode == 200) {
-      //     this.toaster.showSuccess(res.message, "Success");
-      //     this.sessionStorage.setItem('userDetails', res);
-      //     this.sessionStorage.setItemLocalStorage("userDetails", res);
-      //     this.router.navigate(['/dashboard']);
-      //     setTimeout(() => {
-      //       this.dashboardService.dashboardCall.emit(true);
-      //     }, 1);
-      //   } else {
-      //     this.toaster.showError(res.message, "Error")
-      //   }
-      // }
-      // else {
-      //   this.toaster.showError(res.message, "Error")
-      // }
+    next: (res: any) => { 
+      if (res) {
+        if (res.statuscode == 200) {
+          //this.toaster.showSuccess(res.message, "Success"); 
+          this.session.clearUserData('addUserDetails');
+          this.session.setUserData('loginsession',res); 
+          this.router.navigate(['/dashboard']);
+          // setTimeout(() => {
+          //   this.dashboardService.dashboardCall.emit(true);
+          // }, 1);
+        } else {
+          //this.toaster.showError(res.message, "Error")
+        }
+      }
+      else {
+       // this.toaster.showError(res.message, "Error")
+      }
     }, error: (err: any) => {
      // this.toaster.showError(err.message, "Error");
     }

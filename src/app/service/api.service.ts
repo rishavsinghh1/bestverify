@@ -26,4 +26,9 @@ export class ApiService {
     }
     return throwError(() => error)
   }
+
+  isAuthenticated(): boolean {
+    // Logic to check whether the user is authenticated
+    return !!sessionStorage.getItem('loginsession'); // Example logic
+  }
 }

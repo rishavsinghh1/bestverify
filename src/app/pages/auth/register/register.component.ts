@@ -37,7 +37,7 @@ export class RegisterComponent {
     }
 
     this._apiservice._postData(obj,endpoint.auth.register).subscribe((resp: any) => { 
-      if(resp.code == 200){
+      if(resp.statuscode == 200){
         this.router.navigate(['/dashboard']);
         console.log('Response',resp)
         const Toast = Swal.mixin({
@@ -58,6 +58,22 @@ export class RegisterComponent {
         // this.router.navigate(['/dashboard']);
         //return resp;
         
+      }else if(resp.statuscode == 422){
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+          }
+        });
+        Toast.fire({
+          icon: "error",
+          title: resp.message
+        });
       }
     
 
