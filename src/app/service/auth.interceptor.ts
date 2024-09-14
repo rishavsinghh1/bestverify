@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpEvent, HttpHandler, HttpInterceptor, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpInterceptorFn, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { SessionstorageService } from './sessionstorage.service';
+import Swal from 'sweetalert2';
 
 // export const myInterceptor: HttpInterceptorFn = (req, next) => {
 
@@ -55,6 +56,57 @@ export class AuthHeaderInterceptor implements HttpInterceptor {
     }
 
     // Pass the cloned request instead of the original request to the next handler
-    return next.handle(req);
+    //return next.handle(req);
+
+    return new Observable(observer => {
+      const subscription = next.handle(req).subscribe(
+        {
+          next: (event) => { 
+            if (event instanceof HttpResponse) {
+             // this.loader._isServerServer$ = false;
+              if (event.status !== 400) {
+                console.log('event >>>', event);
+
+                  observer.next(event);
+              } else {
+                console.log('new event >>>', event);
+                //this.router.navigateByUrl('/auth/login')
+              }
+            }
+          },
+          error: (err) => {
+            console.log('11new event >>>', err);
+            console.log('11new event >>>', err.error.errors);
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              }
+            });
+            Toast.fire({
+              icon: "error",
+              title: JSON.stringify(err.error.errors) ?? err.error.message
+            });
+            //this.loader._isServerServer$ = false;
+            observer.error(err);
+          },
+          complete: () => {
+            //this.loader._isServerServer$ = false;
+            observer.complete();
+          }
+        }
+      );
+      // remove request from queue when cancelled
+      return () => {
+        subscription.unsubscribe();
+      };
+    });
+
+
   }
 }

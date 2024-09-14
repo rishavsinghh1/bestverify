@@ -28,6 +28,7 @@ export class DashboardComponent {
     let obj ={};
     this._apiservice._postData(obj,endpoint.auth.logout).subscribe((resp: any) => {
      if(resp.status && resp.statuscode == 200){
+      sessionStorage.removeItem('loginsession');
       this.route.navigateByUrl('/login');
      }
     })
