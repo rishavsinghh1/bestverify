@@ -40,7 +40,7 @@ export class AuthHeaderInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     this.userData = this._StorageService.getUserData('loginsession');
-    if (req.url.includes("auth/login") || req.url.includes("auth/verify")  || req.url.includes("user/user-unique") || req.url.includes("user/company-list") || req.url.includes("user/send-otp") || req.url.includes("user/user-create") ) {
+    if (req.url.includes("auth/login") || req.url.includes("auth/verify")  || req.url.includes("user/user-unique") || req.url.includes("user/company-list") || req.url.includes("user/send-otp") || req.url.includes("user/user-create") || req.url.includes("auth/forgot-password")) {
         req = req.clone({
           setHeaders: {
             token: `22509F2AE7BA71E4C3FB32AB94B6CEA8`

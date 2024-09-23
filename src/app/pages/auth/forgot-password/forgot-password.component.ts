@@ -25,7 +25,9 @@ export class ForgotPasswordComponent {
       email:this.forgotpwd.controls.email.value,
 
     }
-    this._apiservice._postData(obj,endpoint.auth.forgotpassword).subscribe((resp: any) => {
+    // this._apiservice._postData(obj,endpoint.auth.forgotpassword).subscribe((resp: any) => {
+      this._apiservice._postData(obj,endpoint.auth.forgotpassword).subscribe({
+        next: (resp: any) => { 
          console.log('response',resp)
          if(resp.statuscode == 200 && resp.responsecode == 1){
           const Toast = Swal.mixin({
@@ -60,6 +62,10 @@ export class ForgotPasswordComponent {
             title: resp.message
           });
          }
-    })
+        }, error: (err: any) => {
+          // this.toaster.showError(err.message, "Error");
+         }
+       }
+       )
   }
 }
