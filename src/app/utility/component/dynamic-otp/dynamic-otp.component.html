@@ -1,0 +1,30 @@
+
+  <form method="post" class="signup-form" [formGroup]="formData">
+    <div class="form-row mt-4">
+        <div class="form-group col-lg-12">
+            <div class="input-wrapper w-100">
+              <label class="label-field">Enter OTP  <span class="text-danger star">*</span></label>
+
+                <input type="text" formControlName="otp" class="form-control"
+                  placeholder="" required  [appInputRestriction]="'integer'">
+            </div>
+            <div *ngIf="(f['otp'].touched || submitted)">
+                <span class="text-danger" *ngIf="f['otp'].errors?.['required']">
+                  Otp is Required
+                </span>
+            </div>
+            <div class="d-flex flex-row-reverse">
+                <div class="text-right otp-time " *ngIf="count" >{{count}} second</div>
+                <div >
+                    <a  href="javascript:void(0)" class="" *ngIf="!count" (click)="onResendOTP(true)">Resend OTP</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="mt-1">
+            <button type="button" class="btn login-btn otpBtnBox" (click)="onSubmitOTP()">{{btnName}}</button>
+        </div>
+    </div>
+  </form>

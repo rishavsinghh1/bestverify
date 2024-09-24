@@ -4,6 +4,8 @@
 // @tailwind utilities;
 @import url('https://pro.fontawesome.com/releases/v5.10.0/css/all.css');
 @import "./assets/main.scss";
+
+
 .main {
     position: relative;
     .dashboard-section {
@@ -12,4 +14,7 @@
         max-width: 100%;
         background-color:$white;
     }
+}
+.is-invalid{
+  color: #dc3545;
 }

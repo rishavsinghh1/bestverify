@@ -15,7 +15,7 @@
                                 </a>
                                 <div class="account-yet d-flex justify-content-between align-items-center">
                                     <p>Already have an account?</p>
-                                    <button class="btn sign-pass-btn" routerLink="/register">
+                                    <button class="btn sign-pass-btn" routerLink="/signup">
                                         Sign up
                                     </button>
                                 </div>
@@ -37,7 +37,7 @@
                                 <span class="icons-form">
                                     <img class="img-fluid" src="../../../assets/img/mobile-icon.png">
                                 </span>
-                                <input  type="text" #loginEl name="name" formControlName="email" class="form-control"   placeholder="Enter Mobile Number">
+                                <input  type="text"   name="name" formControlName="email" class="form-control"   placeholder="">
                             </div>
 
                             <div class="form-group pd-field">
@@ -45,15 +45,15 @@
                                 <span class="icons-form">
                                     <img class="img-fluid" src="../../../assets/img/password-icon.png">
                                 </span>
-                                <input  type="text" name="Password" class="form-control" formControlName="password" placeholder="Enter Password">
-                                <p class="resend-otp">Forgot Password?</p>
+                                <input  type="password" name="Password" class="form-control" formControlName="password" placeholder="">
+                                <p class="resend-otp" routerLink="/forgot-password">Forgot Password?</p>
                             </div>
 
-                            
-                                <a id="openModalButton"  (click)="login()"  class="btn button-next w-100" data-toggle="modal"
-                                    data-target="#myModal">Login</a>
 
-                                    <button (click)="openModal()">Open Modal</button>
+                                <a id="openModalButton"  (click)="login()"  class="btn button-next w-100"
+                                    >Login</a>
+
+                                    <!-- <button (click)="openModal()">Open Modal</button> -->
                         </form>
 
                     </div>
@@ -64,16 +64,43 @@
                     </div>
                 </div>
             </div>
-    
+
         </div>
     </div>
 </section>
 <app-otp #modal></app-otp>
-<nav class="navbar navbar-dark fixed-bottom bg-custom-2">
-    <div class="container">
-      <a class="navbar-brand" href="#a">Home</a>
-        <a class="navbar-brand" href="#a">About Us</a>
-        <a class="navbar-brand" href="#a">Privacy Policy</a>
-        <a class="navbar-brand" href="#a">Terms & Conditions</a>
+
+<!-- <div class="model-sign-otp">
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-md modal-dialog-centered">
+            <div class="modal-content">
+                  <button type="button" class="btn-close" data-dismiss="modal">
+                    <span>×</span>
+                  </button>
+                  <div class="modal-body">
+                        <div class="modal-otp text-center">
+                            <figure>
+                              <img class="img-fluid" src="../../../assets/img/otp.png" alt="otp-img"/>
+                            </figure>
+                            <h4>Please enter the OTP to verify your account</h4>
+                            <p>OTP has been sent to 8376889912</p>
+                                <div class="inputfield">
+                                        <input type="number" maxlength="1" class="input">
+                                        <input type="number" maxlength="1" class="input">
+                                        <input type="number" maxlength="1" class="input">
+                                        <input type="number" maxlength="1" class="input mr-0">
+                                        <p class="resend-otp">Resend OTP</p>
+                                </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <button type="button" class="btn btn-verify  mt-2" data-dismiss="modal">Verify OTP</button>
+                            </div>
+                        </div>
+
+                        </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </nav>
+</div>  -->

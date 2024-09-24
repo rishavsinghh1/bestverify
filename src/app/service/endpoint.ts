@@ -2,9 +2,17 @@
 
 export var endpoint = {
   auth:{
-    login: "auth/login",
-    register:"auth/create"
+    login: "corporate/auth/login",
+    register:"corporate/user/user-unique",
+    otp:"corporate/auth/verify",
+    registerotp:"corporate/user/send-otp",
+    finalregister:"corporate/user/user-create",
+    balance:"console/userBalance",
+    logout:"console/user/logout",
+    companylist:'corporate/user/company-list',
+    forgotpassword:'corporate/auth/user-forgot-password',
   },
+
   dashboard:{
 
   }

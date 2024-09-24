@@ -1,0 +1,81 @@
+
+
+<section class="sign-section">
+  <div class="sign-outer">
+      <div class="sign-inner">
+          <div class="container">
+              <div class="header-sign">
+                  <figure class="signup-head-bg">
+                      <img class="img-fluid" src="../../../assets/img/signup-head-bg.png" alt="signup-head-bg">
+                  </figure>
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <div class="header-inner-signup">
+                              <a href="#" class="logo">
+                                  <img class="img-fluid" src="../../../assets/img/logo2.png"
+                                      alt="Best Verify">
+                              </a>
+                              <div class="account-yet d-flex justify-content-between align-items-center">
+                                  <p>Already have an account?</p>
+                                  <button class="btn sign-pass-btn" routerLink="/login">
+                                      Sign In
+                                  </button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row align-items-center pt-5 pb-5">
+                  <div class="col-lg-6">
+                      <div class="signup-title pb-5 pt-4">
+                          <h2>What's your company type</h2>
+                          <p>Please Enter Sent OTP</p>
+                      </div>
+                      <form  method="post" class="signup-form" [formGroup]="companyTypeForm" *ngIf="!isOtpBoxShow">
+                        <div class="form-group pd-field">
+                            <label class="label-field">Company Type</label>
+                            <span class="icons-form">
+                                <img class="img-fluid" src="../../../assets/img/users3.png">
+                            </span>
+                            <select class="form-control" formControlName="comapnyList">
+                              <option selected value="">Please Select Company type</option>
+                                <option [value]="item.id" *ngFor="let item of companyListData">{{item.name}}</option>
+                            </select>
+                            <span class="highlight"></span>
+                            <app-show-errors [ctrl]="companyTypeForm.get('comapnyList')" [requiredMesg]="'Company Type is required'">
+                            </app-show-errors>
+
+
+                        </div>
+
+                        <div class="form-group pd-field">
+                          <label class="label-field">Mobile Number</label>
+                          <span class="icons-form">
+                              <img class="img-fluid" src="../../../assets/img/users3.png">
+                          </span>
+                          <input type="text" id="cnfp" class="form-control" placeholder="" autocomplete="off" formControlName="username" [appInputRestriction]="'integer'">
+
+                          <app-show-errors [ctrl]="companyTypeForm.get('username')" [requiredMesg]="'Mobile No is required'">
+                          </app-show-errors>
+
+
+                      </div>
+                      <div class="mt-3 w-100" *ngIf="!isOtpBoxShow">
+                        <button (click)="onNextButtonClick()" [disabled]="companyTypeForm.invalid" class="btn button-next w-100">Next</button>
+                    </div>
+                    </form>
+                    <app-dynamic-otp *ngIf="isOtpBoxShow" [btnName]="btnName" [maxLength]="4" (submit)="onOtpSubmit($event)" (resendOTP)="validateOTP('resend')" [timer]="otpTimer"></app-dynamic-otp>
+
+                  </div>
+                  <div class="col-lg-6 col-xs-12 col-sm-12 login_form">
+                      <figure class="signup-img text-right">
+                          <img class="img-fluid" src="../../../assets/img/signup-img.png" alt="signup-img.png">
+                      </figure>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+  </div>
+</section>
