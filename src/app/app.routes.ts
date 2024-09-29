@@ -13,12 +13,7 @@ export const routes: Routes = [
   {
     path:'kyc',
     loadChildren:() => import('./pages/kyc/kyc.module').then((m)=>m.KycModule)
-  },
-  {
-    path:'user-management',
-    canActivate: [authGuard],
-    loadChildren:() => import('./pages/user-management/user-management.module').then((m)=>m.UserManagementModule)
-  },
+  }, 
   {
    path:'dashboard',
    canActivate: [authGuard],

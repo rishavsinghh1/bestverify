@@ -3,28 +3,6 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpInterceptorFn, HttpRequest
 import { Observable } from 'rxjs';
 import { SessionstorageService } from './sessionstorage.service';
 import Swal from 'sweetalert2';
-
-// export const myInterceptor: HttpInterceptorFn = (req, next) => {
-
-//   if (req.url.includes("auth/login") || req.url.includes("auth/verify") ) {
-//     req = req.clone({
-//       headers: req.headers.set('token', '22509F2AE7BA71E4C3FB32AB94B6CEA8'),
-//     })
-//   }
-//   // else if (this.loginSession != undefined) {
-//   //   ////console.log("Setting Token")
-
-//   //   //this.loader.isLoading.next(true);
-
-//   //   req = req.clone({
-//   //     headers: req.headers.set('Authorization', 'Bearer ' + this.loginSession)
-//   //     .set('token', '22509F2AE7BA71E4C3FB32AB94B6CEA8')
-//   //   })
-//   // }
-
-//   return next(req);
-// };
-
 @Injectable()
 export class AuthHeaderInterceptor implements HttpInterceptor {
   userData:any;
@@ -40,7 +18,7 @@ export class AuthHeaderInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     this.userData = this._StorageService.getUserData('loginsession');
-    if (req.url.includes("auth/login") || req.url.includes("auth/verify")  || req.url.includes("user/user-unique") || req.url.includes("user/company-list") || req.url.includes("user/send-otp") || req.url.includes("user/user-create") || req.url.includes("auth/forgot-password")) {
+    if (req.url.includes("auth/login") || req.url.includes("auth/verify")  || req.url.includes("user/user-unique") || req.url.includes("user/company-list") || req.url.includes("user/send-otp") || req.url.includes("user/user-create") || req.url.includes("auth/forgot-password") || req.url.includes("auth/user-forgot-password")) {
         req = req.clone({
           setHeaders: {
             token: `22509F2AE7BA71E4C3FB32AB94B6CEA8`
@@ -110,3 +88,46 @@ export class AuthHeaderInterceptor implements HttpInterceptor {
 
   }
 }
+
+
+// intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+//   this.userData = this._StorageService.getUserData('loginsession')  || {};
+
+//   const excludedUrls = [
+//     "auth/login",
+//     "auth/verify",
+//     "user/user-unique",
+//     "user/company-list",
+//     "user/send-otp",
+//     "user/user-create",
+//     "auth/forgot-password",
+//     "auth/user-forgot-password"
+//   ];
+
+//   const headers :any = {
+//     token: '22509F2AE7BA71E4C3FB32AB94B6CEA8'
+//   };
+  
+//   if (this.userData && this.userData.authtoken) {
+//     headers.set('Authorization', `Bearer ${this.userData.authtoken}`); 
+//   }
+
+  
+//   if (excludedUrls.some(url => req.url.includes(url))) {
+//     req = req.clone({ headers });
+//   } else {
+//     req = req.clone({ headers });
+//   }
+//   console.log(headers);
+//   return next.handle(req).pipe(
+//     tap(event => {
+//       if (event instanceof HttpResponse) {
+//         console.log('event >>>', event);
+//       }
+//     }),
+//     catchError(err => {
+//       console.log('Error:', err); 
+//       return throwError(err);
+//     })
+//   );
+// }

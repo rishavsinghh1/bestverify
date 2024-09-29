@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { ReactiveFormsModule,FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../../../service/api.service';
 import { endpoint } from '../../../service/endpoint';
 import Swal from 'sweetalert2';
@@ -13,70 +13,70 @@ import { SessionstorageService } from '../../../service/sessionstorage.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule,RouterModule,OtpComponent],
+  imports: [ReactiveFormsModule, RouterModule, OtpComponent],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+  @ViewChild('modal', { static: false }) modal!: OtpComponent;
+  message: any;
+  loginform: any = FormGroup;
+  userData: any;
 
-  @ViewChild('modal', { static: false })modal!: OtpComponent;
-  message:any;
-  loginform:any =new FormGroup({})
-
-
-  constructor(private _commonservice:CommonService,private fb:FormBuilder,
-    private _apiservice:ApiService,public router: Router,
-    private _reponseMessage:MessageService,private _sessionStore:SessionstorageService){
-  this.loginform= this.fb.group({
-    email:['',Validators.required],
-    password:['',Validators.required],
-  })
-  }
+  constructor(
+    private commonService: CommonService,
+    private formBuilder: FormBuilder,
+    private apiService: ApiService,
+    public router: Router,
+    private responseMessage: MessageService,
+    private sessionStorageService: SessionstorageService
+  ) {}
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-    console.log('====================================');
-    console.log(environment.apiUrl);
-    console.log('====================================');
-  }
-
-  login(){
-    console.log('hlw');
-    let obj={
-      email_phone:this.loginform.controls.email.value,
-      password:this.loginform.controls.password.value,
-      latitude:'25.5940947',
-      longitude:'25.5940947',
-      type:1
-
-    }
-    // console.log(obj);
-    this._apiservice._postData(obj,endpoint.auth.login).subscribe((resp: any) => {
-      this._sessionStore.setUserData('loginsession',resp);
-      if(resp.statuscode == 200 && resp.responsecode == 2){
-         let emitdata ={
-          phoneno:resp.data.phone,
-          email:obj.email_phone,
-          password:obj.password
-         }
-        this._commonservice.sendData(emitdata);
-        //this.mobno= resp.data;
-        this.openModal();
-        this._reponseMessage._successaAlert(resp.message,'success'); 
-   } else if(resp.statuscode == 200 && resp.responsecode == 1){
+    console.log(`Environment API URL: ${environment.apiUrl}`);
+    this.userData = this.sessionStorageService.getUserData('loginsession');
+    if (this.userData) {
       this.router.navigate(['/dashboard']);
-       console.log('Response',resp) 
-      this._reponseMessage._successaAlert(resp.message,'success');
-   }else{
-    this._reponseMessage._successaAlert(resp.message,'error');
-     
-   }
+    }
 
-    })
+    this.loginform = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
-  openModal(){
+  login(): void {
+    const loginData = {
+      email_phone: this.loginform.controls.email.value,
+      password: this.loginform.controls.password.value,
+      latitude: '25.5940947',
+      longitude: '25.5940947',
+      type: 1
+    };
+
+    this.apiService._postData(loginData, endpoint.auth.login).subscribe((response: any) => { 
+      if (response.statuscode === 200 && response.responsecode === 2) { 
+        const emitData = {
+          phoneno: response.data.phone,
+          email: loginData.email_phone,
+          password: loginData.password
+        };
+        this.commonService.sendData(emitData);
+        this.openModal();
+        this.responseMessage._successaAlert(response.message, 'success');
+      } else if (response.statuscode === 200 && response.responsecode === 1) {
+        this.sessionStorageService.setUserData('loginsession', response); 
+        this.commonService.sendData(response);
+          this.router.navigate(['/dashboard']); 
+        console.log('Response', response);
+        this.responseMessage._successaAlert(response.message, 'success');
+      } else {
+        this.responseMessage._successaAlert(response.message, 'error');
+      }
+    });
+  }
+
+  openModal(): void {
     this.modal.open();
   }
 }
