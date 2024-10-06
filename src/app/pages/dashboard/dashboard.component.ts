@@ -7,7 +7,7 @@ import { SidebarComponent } from '../layout/sidebar/sidebar.component';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [SidebarComponent],
+  imports: [],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -15,7 +15,6 @@ export class DashboardComponent {
   userbalance:any;
   constructor(private _apiservice:ApiService,private route:Router){
     let obj ={};
-
     this._apiservice._postData(obj,endpoint.auth.balance).subscribe((resp: any) => {
       this.userbalance=resp.balance;
       console.log('====================================');
@@ -24,14 +23,14 @@ export class DashboardComponent {
     })
   }
   //console/userBalance
-  logout(){
-    console.log('hlw');
-    let obj ={};
-    this._apiservice._postData(obj,endpoint.auth.logout).subscribe((resp: any) => {
-     if(resp.status && resp.statuscode == 200){
-      sessionStorage.removeItem('loginsession');
-      this.route.navigateByUrl('/login');
-     }
-    })
-  }
+  // logout(){
+  //   console.log('hlw');
+  //   let obj ={};
+  //   this._apiservice._postData(obj,endpoint.auth.logout).subscribe((resp: any) => {
+  //    if(resp.status && resp.statuscode == 200){
+  //     sessionStorage.removeItem('loginsession');
+  //     this.route.navigateByUrl('/login');
+  //    }
+  //   })
+  // }
 }
