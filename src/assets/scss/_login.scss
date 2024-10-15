@@ -182,3 +182,12 @@
   }
 }
 
+.pw-eye {
+  position: absolute;
+  top: 7px;
+  right: 10px;
+  font-size: 18px;
+@media (min-width:1440px){
+  top: 12px;  
+}
+}
