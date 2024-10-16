@@ -20,3 +20,15 @@ $container-max-widths: (sm: 540px,
 @import "config/config";
 @import "scss/pages";
 
+.page-title {
+  color: #292d32;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.22px;
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+  @media(min-width:1680px) {
+    font-size: 22px; 
+  }
+}
