@@ -15,6 +15,10 @@ export const routes: Routes = [
     loadChildren:() => import('./pages/kyc/kyc.module').then((m)=>m.KycModule)
   }, 
   {
+    path:'fund',
+    loadChildren:() => import('./pages/fund/fund.module').then((m)=>m.FundModule)
+  },
+  {
    path:'dashboard',
    canActivate: [authGuard],
    loadChildren:() => import('./pages/dashboard/dashboard.module').then((m)=>m.DashboardModule)

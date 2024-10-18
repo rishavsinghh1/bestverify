@@ -14,13 +14,13 @@ import { SidebarComponent } from '../layout/sidebar/sidebar.component';
 export class DashboardComponent {
   userbalance:any;
   constructor(private _apiservice:ApiService,private route:Router){
-    let obj ={};
-    this._apiservice._postData(obj,endpoint.auth.balance).subscribe((resp: any) => {
-      this.userbalance=resp.balance;
-      console.log('====================================');
-      console.log(`data`,resp);
-      console.log('====================================');
-    })
+    // let obj ={};
+    // this._apiservice._postData(obj,endpoint.auth.balance).subscribe((resp: any) => {
+    //   this.userbalance=resp.balance;
+    //   console.log('====================================');
+    //   console.log(`data`,resp);
+    //   console.log('====================================');
+    // })
   }
   //console/userBalance
   // logout(){

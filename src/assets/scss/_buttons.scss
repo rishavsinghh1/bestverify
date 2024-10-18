@@ -1,0 +1,92 @@
+.buttons {
+    display: flex;
+    gap: 20px;
+  }
+    .btn {
+    
+      &.btn-green {
+        background: #3d9c3c;
+        color: #fff;
+        padding:11px;
+        font-size: 13px;
+        font-weight: 500;
+        border-radius: 8px;
+        &:hover{
+          background:#40b93f;
+          color:#fff;
+        }
+        @media(min-width:1680px){
+          font-size: 15px;
+          padding:11px 2rem;
+        }
+      }
+      
+      &.btn-danger {
+        background: #F20303;
+        color: #fff;
+        padding:11px;
+        font-size: 13px;
+        font-weight: 500;
+        border-radius: 8px;
+        @media(min-width:1680px){
+          font-size: 15px;
+          padding:11px 2rem;
+        }
+      }
+      &.trasparent-btn {
+        color: #005286;
+        background: #f2f7fb;
+        border: 1px solid #005286;
+        padding:11px;
+        font-size: 13px;
+        font-weight: 500;
+        border-radius: 8px;
+        @media(min-width:1680px){
+          font-size: 15px;
+          padding:11px 2rem;
+        }
+      }
+      &.btn-blue2 {
+        color: #fff;
+        background: #005286;
+        border: 1px solid #005286;
+        padding:11px;
+        font-size: 13px;
+        font-weight: 500;
+        border-radius: 8px;
+        &:hover{
+          background:#3387bd;
+          color:#fff;
+        }
+        @media(min-width:1680px){
+          font-size: 15px;
+          padding:11px 2rem;
+        }
+      }
+      &.grey {
+        color: #fff;
+        background:#919291;
+        border: 1px solid #919291;
+        padding:11px;
+        font-size: 13px;
+        font-weight: 500;
+        border-radius: 8px;
+        @media(min-width:1680px){
+          font-size: 15px;
+          padding:11px 2rem;
+        }
+      }
+    }
+  
+  
+  .text-btn {
+    font-size: 13px;
+    font-weight: 600;
+    border: 0;
+    color: #005286;
+    background: transparent;
+    @media(min-width:1680px){
+      font-size: 15px;
+    }
+  }
+  

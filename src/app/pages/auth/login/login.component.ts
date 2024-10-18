@@ -29,15 +29,15 @@ export class LoginComponent {
     private apiService: ApiService,
     public router: Router,
     private responseMessage: MessageService,
-    private sessionStorageService: SessionstorageService
+    private _SessionstorageService: SessionstorageService
   ) {}
 
   ngOnInit(): void {
     console.log(`Environment API URL: ${environment.apiUrl}`);
-    this.userData = this.sessionStorageService.getUserData('loginsession');
-    if (this.userData) {
-      this.router.navigate(['/dashboard']);
-    }
+    // this.userData = this._SessionstorageService.getUserData('loginsession');
+    // if (this.userData) {
+    //   this.router.navigate(['/dashboard']);
+    // }
 
     this.loginform = this.formBuilder.group({
       email: ['', Validators.required],
@@ -65,7 +65,7 @@ export class LoginComponent {
         this.openModal();
         this.responseMessage._successaAlert(response.message, 'success');
       } else if (response.statuscode === 200 && response.responsecode === 1) {
-        this.sessionStorageService.setUserData('loginsession', response); 
+        this._SessionstorageService.setUserData('loginsession', response); 
         this.commonService.sendData(response);
           this.router.navigate(['/dashboard']); 
         console.log('Response', response);

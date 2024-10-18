@@ -8,7 +8,7 @@ export var endpoint = {
     registerotp:"corporate/user/send-otp",
     finalregister:"corporate/user/user-create",
     balance:"console/userBalance",
-    logout:"console/user/logout",
+    userlogout:"console/user/logout",
     companylist:'corporate/user/company-list',
     forgotpassword:'corporate/auth/user-forgot-password',
   },

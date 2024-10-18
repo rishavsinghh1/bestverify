@@ -1,0 +1,106 @@
+
+
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 layout-spacing">
+                <div class="page-title">Fund Transfer</div>
+              </div>
+              <div class="col-12 col-lg-7 col-xl-7 layout-spacing">
+                <div class="single-transfer">
+                  <div class="title">Transactions</div>
+                  <div class="p-3">
+                    <form>
+                      <div class="row">
+                        <div class="col-12 col-lg-6">
+                          <div class="form-group mb-4">
+                            <label>Payment Mode</label>
+                            <select class="form-control" formControlName="mode">
+                              <option>NEFT</option>
+                            </select>
+               
+                          </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                          <div class="form-group mb-4">
+                            <label>Amount</label>
+                            <input type="text" placeholder=" " class="form-control" formControlName="amount"
+                            placeholder="">
+                          
+                          </div>
+                        </div>
+                        <div class="col-12 col-lg-12">
+                          <div class="form-group mb-4">
+                            <label>Remark (Optional)</label>
+                            <textarea type="text" placeholder="" class="form-control" formControlName="remarks"></textarea>
+                          </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                          <div class="custom-control custom-checkbox my-2">
+                            <input type="checkbox" class="custom-control-input" id="checkbox1" formControlName="paymentAdvice">
+                            <label class="custom-control-label" for="checkbox1">Payment Advice</label>
+                          </div>
+                          <div class="form-group mb-4">
+                            <input type="text" placeholder="Enter email ID" class="form-control" formControlName="emailField">
+                           
+                          </div>
+                        </div>
+          
+                        <div class="col-12 col-lg-6">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="checkbox2" formControlName="creditAdvice">
+                            <label class="custom-control-label" for="checkbox2">Credit Advice</label>
+                          </div>
+                          <div class="form-group mb-4">
+                            <input type="text" placeholder="Enter email ID" class="form-control" formControlName="creditField">
+                          </div>
+                        </div>
+
+
+                        <div class="col-12">
+                          <div class="row">
+                            <div class="col-12 col-lg-6">
+                              <div class="form-group mb-4">
+                                <label>Frequency</label>
+                                <select name="pets" id="" class="form-control" formControlName="frequency">
+                                  <option value="">--Select Frequency--</option>
+                                  <option value="weekly">Weekly</option>
+                                  <option value="monthly">Monthly</option>
+                                  <option value="yearly">Yearly</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                              <div class="form-group mb-4">
+                                <label>No. of Installments</label>
+                                <input type="text" placeholder="Enter Value" class="form-control">
+                              </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                              <div class="form-group mb-4">
+                                <label>Start Date</label>
+                                <input type="date" placeholder="" class="form-control">
+                              </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                              <div class="form-group mb-4">
+                                <label>End Date</label>
+                                <input type="date" placeholder="" class="form-control">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+          
+                        <div  class="col-12 d-flex buttons mt-3" >
+                          <button  type="button" class="btn btn-green">Transfer</button>
+                          <button  type="button" class="btn trasparent-btn">Cancel</button>
+                          </div>
+
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+</section>
