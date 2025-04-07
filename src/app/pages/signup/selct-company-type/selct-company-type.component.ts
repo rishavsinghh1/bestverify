@@ -54,7 +54,7 @@ ngOnInit(): void {
   let session: any = this.session.getUserData('addUserDetails');
   //console.log(session);
   if (session) {
-    this.userData = session;
+    // this.userData = session;
     //console.log(this.userData);
   }else{
     this.router.navigateByUrl('/signup')
@@ -217,9 +217,7 @@ sendOTP() {
   this._apiservice._postData(formData,endpoint.auth.finalregister).subscribe({
     next: (res: any) => { 
       if (res) {
-        if (res.statuscode == 200) {
-          //this.toaster.showSuccess(res.message, "Success"); 
-          this.session.clearUserData('addUserDetails');
+        if (res.statuscode == 200 && res.responsecode == 1) {
           this.session.setUserData('loginsession',res); 
           this.router.navigate(['/dashboard']);
           // setTimeout(() => {

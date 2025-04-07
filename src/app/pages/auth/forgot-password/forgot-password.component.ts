@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from '../../../service/api.service';
 import { endpoint } from '../../../service/endpoint';
@@ -13,22 +13,23 @@ import { SessionstorageService } from '../../../service/sessionstorage.service';
   styleUrl: './forgot-password.component.scss'
 })
 export class ForgotPasswordComponent {
-  forgotpwd:any=new FormGroup({})
+  forgotpassword:any=new FormGroup({})
 
 
-  constructor(private _fb:FormBuilder,private _apiservice:ApiService,private _sessionStore:SessionstorageService){
-      this.forgotpwd=this._fb.group({
+  constructor(private _fb:FormBuilder,private apiService:ApiService,private _sessionStore:SessionstorageService){
+      this.forgotpassword=this._fb.group({
         email:[''],
         pan:[''],
       })
   }
-  forgotPwd(){
-  let obj={
-      email:this.forgotpwd.controls.email.value,
-      pan:this.forgotpwd.controls.pan.value,
+  clickforgotPwd(){
+  const fogotData={
+      email:this.forgotpassword.controls.email.value,
+      pan:this.forgotpassword.controls.pan.value,
 
     }
-    this._apiservice._postData(obj,endpoint.auth.forgotpassword).subscribe((resp: any) => {
+      this.apiService._postData(fogotData,endpoint.auth.forgotpassword).subscribe((resp: any) => { 
+      console.log('fogresp',resp)
       if(resp.statuscode == 200 && resp.responsecode == 1){
         const Toast = Swal.mixin({
           toast: true,

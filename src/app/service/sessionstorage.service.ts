@@ -4,6 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class SessionstorageService {
+  removeUserData(arg0: string) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor() { }
  // Set user data in sessionStorage
@@ -23,5 +26,8 @@ getUserData(key:any): any {
 // Clear user data from sessionStorage
 clearUserData(key:any): void {
   sessionStorage.removeItem(key);
+}
+resetSession = ():void => {
+  sessionStorage.clear();
 }
 }

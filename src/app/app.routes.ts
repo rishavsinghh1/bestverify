@@ -10,18 +10,24 @@ export const routes: Routes = [
     path:'signup',
     loadChildren:() => import('./pages/signup/signup.module').then((m)=>m.SignupModule)
   },
+  
   {
-    path:'kyc',
-    loadChildren:() => import('./pages/kyc/kyc.module').then((m)=>m.KycModule)
-  }, 
-  {
-    path:'fund',
-    loadChildren:() => import('./pages/fund/fund.module').then((m)=>m.FundModule)
-  },
-  {
-   path:'dashboard',
-   canActivate: [authGuard],
-   loadChildren:() => import('./pages/dashboard/dashboard.module').then((m)=>m.DashboardModule)
-  },
+    path: 'home',
+    children: [
+      {
+        path: 'dashboard',
+        canActivate: [authGuard],
+        loadComponent:() => import('./pages/dashboard/dashboard.component').then((m) => m.DashboardComponent)
+      },
+      {
+        path:'kyc',
+        loadChildren:() => import('./pages/kyc/kyc.module').then((m)=>m.KycModule)
+      }, 
+      {
+        path:'fund',
+        loadChildren:() => import('./pages/fund/fund.module').then((m)=>m.FundModule)
+      },
+    ]
+  }
 
 ];

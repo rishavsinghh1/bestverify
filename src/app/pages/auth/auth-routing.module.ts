@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { OtpComponent } from './otp/otp.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -29,7 +30,11 @@ const routes: Routes = [
     path: 'forgot-password',
     component: ForgotPasswordComponent
 
-}
+  },
+  {
+    path:'profile',
+    component:ProfileComponent
+  }
 ];
 
 @NgModule({

@@ -58,7 +58,8 @@ export class RegisterComponent {
         // this.router.navigate(['/dashboard']);
         //return resp;
         
-      }else if(resp.statuscode == 422){
+      } else if (resp.statuscode == 422) {
+        console.log('errorresp', resp.message); // Corrected typo in property name
         const Toast = Swal.mixin({
           toast: true,
           position: "top-end",
@@ -66,8 +67,8 @@ export class RegisterComponent {
           timer: 3000,
           timerProgressBar: true,
           didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
           }
         });
         Toast.fire({
@@ -75,7 +76,6 @@ export class RegisterComponent {
           title: resp.message
         });
       }
-    
 
     })
   }

@@ -1,0 +1,55 @@
+
+
+<section>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 layout-spacing">
+                <div class="page-title">My Profile</div>
+              </div>
+              <div class="col-12 col-lg-12 col-xl-12 layout-spacing">
+                <div class="single-transfer">
+                  <div class="title">Profile</div>
+                  <div class="p-3">
+                    <form [formGroup]="profileFrm">
+                      <div class="row">
+                        <div class="col-12">
+                          <div class="row">
+                            <div class="col-12 col-lg-6">
+                              <div class="form-group mb-4">
+                                <label>Name</label>
+                                <input type="text" placeholder="Enter Name" formControlName="name" class="form-control" >
+                              </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                              <div class="form-group mb-4">
+                                <label>User Name</label>
+                                <input type="text" placeholder="Enter Value" formControlName="username" class="form-control">
+                              </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                              <div class="form-group mb-4">
+                                <label>Firm Name</label>
+                                <input type="text" placeholder="Enter Value"  formControlName ="firmname" class="form-control">
+                              </div>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                              <div class="form-group mb-4">
+                                <label>Email</label>
+                                <input type="text" placeholder=""  formControlName="email" class="form-control">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+          
+                        <!-- <div  class="col-12 d-flex buttons mt-3" >
+                          <button  type="button" class="btn btn-green">Transfer</button>
+                          </div> -->
+
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+</section>

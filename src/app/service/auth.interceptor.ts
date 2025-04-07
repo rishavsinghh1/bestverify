@@ -7,86 +7,90 @@ import Swal from 'sweetalert2';
 export class AuthHeaderInterceptor implements HttpInterceptor {
   userData:any;
   constructor(
-   // private authService: AuthService,
-    //private verfiyService: VerificationService,
-    //private crypto: CryptoService,
-    //private _SharedService: SharedService,
-    //private _UserService: UserService,
     private _StorageService: SessionstorageService,
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
     this.userData = this._StorageService.getUserData('loginsession');
-    // if (req.url.includes("auth/login") || req.url.includes("auth/verify")  || req.url.includes("user/user-unique") || req.url.includes("user/company-list") || req.url.includes("user/send-otp") || req.url.includes("user/user-create") || req.url.includes("auth/forgot-password") || req.url.includes("auth/user-forgot-password")||req.url.includes("user/logout")) {
-      if (req.url.includes("auth/login") || req.url.includes("auth/verify")  || req.url.includes("user/user-unique") || req.url.includes("user/company-list") || req.url.includes("user/send-otp") || req.url.includes("user/user-create") || req.url.includes("auth/forgot-password")) { 
-    req = req.clone({
-          setHeaders: {
-            token: `22509F2AE7BA71E4C3FB32AB94B6CEA8`
-          }
-        });
+    if (req.url.includes("auth/login") || req.url.includes("auth/verify")  || req.url.includes("user/user-unique") || req.url.includes("user/company-list") || req.url.includes("user/send-otp") || req.url.includes("user/user-create") || req.url.includes("auth/forgot-password")) { 
+      req = req.clone({
+        setHeaders: {
+          token: `22509F2AE7BA71E4C3FB32AB94B6CEA8`
+        }
+      });
+    } else if (this.userData && this.userData.authtoken) {
+      req = req.clone({
+        headers: req.headers.set('Authorization', 'Bearer ' + this.userData.authtoken)
+          .set('token', '22509F2AE7BA71E4C3FB32AB94B6CEA8')
+      });
+    } else {
+      req = req.clone({
+        headers: req.headers.set('token', '22509F2AE7BA71E4C3FB32AB94B6CEA8')
+      });
     }
 
-    else if (this.userData.authtoken != undefined) {
-          req = req.clone({
-            headers: req.headers.set('Authorization', 'Bearer ' + this.userData?.authtoken)
-            .set('token', '22509F2AE7BA71E4C3FB32AB94B6CEA8')
-          })
+    if (req.url.includes("auth/logout")) {
+      // Clear the user data and redirect to the login page
+      this._StorageService.clearUserData('loginsession');
+      // Redirect to the login page
+      window.location.href = '/login';
     }
-
-    // Pass the cloned request instead of the original request to the next handler
-    //return next.handle(req);
 
     return new Observable(observer => {
-      const subscription = next.handle(req).subscribe(
-        {
-          next: (event) => { 
-            if (event instanceof HttpResponse) {
-             // this.loader._isServerServer$ = false;
-              if (event.status !== 400) {
-                console.log('event >>>', event);
-
-                  observer.next(event);
-              } else {
-                console.log('new event >>>', event);
-                //this.router.navigateByUrl('/auth/login')
-              }
+      const subscription = next.handle(req).subscribe({
+        next: (event) => { 
+          if (event instanceof HttpResponse) {
+            if (event.status !== 400) {
+              console.log('event >>>', event);
+              observer.next(event);
+            } else {
+              console.log('new event >>>', event);
+              const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.onmouseenter = Swal.stopTimer;
+                  toast.onmouseleave = Swal.resumeTimer;
+                }
+              });
+              Toast.fire({
+                icon: "error",
+                title: JSON.stringify(event.body.errors) ?? event.body.message
+              });
             }
-          },
-          error: (err) => {
-            console.log('11new event >>>', err);
-            console.log('11new event >>>', err.error.errors);
-            const Toast = Swal.mixin({
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.onmouseenter = Swal.stopTimer;
-                toast.onmouseleave = Swal.resumeTimer;
-              }
-            });
-            Toast.fire({
-              icon: "error",
-              title: JSON.stringify(err.error.errors) ?? err.error.message
-            });
-            //this.loader._isServerServer$ = false;
-            observer.error(err);
-          },
-          complete: () => {
-            //this.loader._isServerServer$ = false;
-            observer.complete();
           }
+        },
+        error: (err) => {
+          console.log('11new event >>>', err);
+          console.log('11new event >>>', err.error.errors);
+          const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "error",
+            title: JSON.stringify(err.error.errors) ?? err.error.message
+          });
+          observer.error(err);
+        },
+        complete: () => {
+          observer.complete();
         }
-      );
-      // remove request from queue when cancelled
+      });
       return () => {
         subscription.unsubscribe();
       };
     });
-
-
   }
 }
 

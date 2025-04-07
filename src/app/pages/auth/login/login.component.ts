@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../../../service/api.service';
@@ -9,6 +9,7 @@ import { MessageService } from '../../../service/message.service';
 import { OtpComponent } from '../otp/otp.component';
 import { CommonService } from '../../../service/common.service';
 import { SessionstorageService } from '../../../service/sessionstorage.service';
+import { delay, of } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -19,18 +20,16 @@ import { SessionstorageService } from '../../../service/sessionstorage.service';
 })
 export class LoginComponent {
   @ViewChild('modal', { static: false }) modal!: OtpComponent;
+  private readonly _sessionStorageService = inject(SessionstorageService)
+  private readonly responseMessage = inject(MessageService)
+  private readonly apiService = inject(ApiService)
+  private readonly commonService = inject(CommonService)
+  private readonly formBuilder = inject(FormBuilder)
+  private readonly router = inject(Router)
   message: any;
   loginform: any = FormGroup;
   userData: any;
 
-  constructor(
-    private commonService: CommonService,
-    private formBuilder: FormBuilder,
-    private apiService: ApiService,
-    public router: Router,
-    private responseMessage: MessageService,
-    private _SessionstorageService: SessionstorageService
-  ) {}
 
   ngOnInit(): void {
     console.log(`Environment API URL: ${environment.apiUrl}`);
@@ -38,6 +37,7 @@ export class LoginComponent {
     // if (this.userData) {
     //   this.router.navigate(['/dashboard']);
     // }
+    // this._sessionStorageService.resetSession();
 
     this.loginform = this.formBuilder.group({
       email: ['', Validators.required],
@@ -65,11 +65,9 @@ export class LoginComponent {
         this.openModal();
         this.responseMessage._successaAlert(response.message, 'success');
       } else if (response.statuscode === 200 && response.responsecode === 1) {
-        this._SessionstorageService.setUserData('loginsession', response); 
-        this.commonService.sendData(response);
-          this.router.navigate(['/dashboard']); 
-        console.log('Response', response);
-        this.responseMessage._successaAlert(response.message, 'success');
+        console.log('resp_data',response);
+        this._sessionStorageService.setUserData('loginsession', response);
+        this.goToDashboardPage(response);
       } else {
         this.responseMessage._successaAlert(response.message, 'error');
       }
@@ -78,5 +76,13 @@ export class LoginComponent {
 
   openModal(): void {
     this.modal.open();
+  }
+
+  goToDashboardPage = (response:any) => {
+    of(true).pipe(delay(1000)).subscribe((res) =>{
+      this.commonService.setLoginStatus = true
+      this.router.navigate(['/home/dashboard']);
+      this.responseMessage._successaAlert(response.message, 'success');
+    })
   }
 }
